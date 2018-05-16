@@ -37,7 +37,7 @@ public class TwitterRestControllerTest {
 	@MockBean
 	private UserService userService;
 
-	@Test
+	/*@Test
 	public void testGetUsers() throws Exception {
 		// Given
 		User user = new User();
@@ -52,7 +52,7 @@ public class TwitterRestControllerTest {
 		mvc.perform(get("/users").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(1))).andExpect(jsonPath("$[0].login", is(user.getLogin())));
 	}
-
+*/
 	/*@Test
 	public void testGetParticipant() throws Exception {
 		// Given

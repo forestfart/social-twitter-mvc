@@ -1,8 +1,7 @@
 package com.social.twitter.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "tweets")
@@ -12,22 +11,35 @@ public class Tweet {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column
-	private LocalDateTime date;
+	@Column(name = "date")
+	private String date;
 
-	@Column
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tweetUser")
+	private User tweetUser;
+
+	@Column(name = "content")
 	private String content;
 
+	public Tweet(String date, User tweetUser, String content) {
+		this.date = date;
+		this.tweetUser = tweetUser;
+		this.content = content;
+	}
+
 	public Tweet() {
-		this.date = LocalDateTime.now();
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public LocalDateTime getDate() {
+	public String getDate() {
 		return date;
+	}
+
+	public User getTweetUser() {
+		return tweetUser;
 	}
 
 	public String getContent() {
@@ -35,15 +47,18 @@ public class Tweet {
 	}
 
 	public void setId(long id) {
-
 		this.id = id;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public void setTweetUser(User tweetUser) {
+		this.tweetUser = tweetUser;
 	}
 }

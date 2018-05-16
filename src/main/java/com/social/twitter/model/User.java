@@ -1,7 +1,5 @@
 package com.social.twitter.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,26 +9,48 @@ import java.util.Set;
 public class User {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
+
+	@Column(name = "login")
 	private String login;
 
-	@JsonIgnore
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "tweets_id")
-	Set<User> tweets = new HashSet<>();
+	@OneToMany(
+		targetEntity = Tweet.class,
+		mappedBy = "tweetUser",
+		cascade = CascadeType.ALL)
+	private Set<Tweet> tweets;
 
-	public void setLogin(String login) {
+	public User(String login, Set<Tweet> tweets) {
 		this.login = login;
+		this.tweets = new HashSet<>();
 	}
 
-	public void setTweets(Set<User> tweets) {
-		this.tweets = tweets;
+	public User() {
+		this(null , null);
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public String getLogin() {
 		return login;
 	}
 
-	public Set<User> getTweets() {
+	public Set<Tweet> getTweets() {
 		return tweets;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setTweets(Set<Tweet> tweets) {
+		this.tweets = tweets;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

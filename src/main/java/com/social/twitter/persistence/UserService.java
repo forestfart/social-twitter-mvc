@@ -1,11 +1,12 @@
 package com.social.twitter.persistence;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.social.twitter.model.User;
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
-
 
 @Component("userService")
 public class UserService {
@@ -16,12 +17,25 @@ public class UserService {
 		connector = DatabaseConnector.getInstance();
 	}
 
+
 	public Collection<User> getAll() {
 		return connector.getSession().createCriteria(User.class).list();
 	}
-	
-	public User findByLogin(String login) {
-		return (User) connector.getSession().get(User.class, login);
+
+	public Collection<User> getAllByHql() {
+		String hql = "FROM User";
+		Query query = connector.getSession().createQuery(hql);
+		return query.list();
+	}
+
+	public User findById(String id) {
+		return (User)connector.getSession().get(User.class, id);
+	}
+
+	public User findByLogin(String searchLogin) {
+		String hql = "FROM User s WHERE s.login = " + searchLogin;
+		Query query = connector.getSession().createQuery(hql);
+		return (User)query.uniqueResult();
 	}
 
 	public void create(User user) {
