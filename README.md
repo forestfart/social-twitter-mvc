@@ -5,9 +5,8 @@ CRUD application for twitting and following other twitters
 [![codecov](https://codecov.io/gh/forestfart/social-twitter-rest/branch/master/graph/badge.svg)](https://codecov.io/gh/forestfart/social-twitter-rest)
 
 This app has been deployed at 
-```bash 
+
 base_url = http://social-twitter-rest.herokuapp.com/twitter
-```
 
 ## API documentation
 
@@ -44,8 +43,10 @@ GET base_url/'login'/'followLogin"
 
 ### Timeline
 List of the messages posted by all the users they follow
+HTTP method:
 ```bash
-HTTP method: GET base_url/'login'/timeline
+GET base_url/'login'/timeline
 ```
+
 
 Copyright (c) 2018 Michal Michalik
