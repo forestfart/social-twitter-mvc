@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,7 +68,6 @@ public class TwitterRestController {
 
 	@RequestMapping(value = "/{login}/{followLogin}", method = RequestMethod.GET)
 	public ResponseEntity<?> registerFollow(@PathVariable("login") String login, @PathVariable("followLogin") String followLogin) {
-		System.out.println(login + " --------- " + followLogin);
 		User user = userService.findByLogin(login);
 		User followUser = userService.findByLogin(followLogin);
 		if (user == null || followUser == null) return new ResponseEntity<Object>(String.format("%s or %s does not exist", login, followLogin), HttpStatus.NOT_FOUND);
@@ -82,5 +82,21 @@ public class TwitterRestController {
 		} else {
 			return new ResponseEntity<>(String.format("User %s is already followed by %s", followLogin, login), HttpStatus.OK);
 		}
+	}
+
+	@RequestMapping(value = "/{login}/timeline", method = RequestMethod.GET)
+	public ResponseEntity<?> getUserTimeline(@PathVariable("login") String login) {
+		User user = userService.findByLogin(login);
+		List<User> followedUsers = followService.getAll().stream()
+				.filter(follow -> follow.getUser().getLogin().equals(login))
+				.map(u -> u.getFollowing())
+				.collect(Collectors.toList());
+		List<Tweet> timelineTweets = new ArrayList<>();
+		for (Tweet tweet : tweetingService.getAll()) {
+			if (followedUsers.contains(tweet.getTweetUser())) {
+				timelineTweets.add(tweet);
+			}
+		}
+		return new ResponseEntity<>(timelineTweets, HttpStatus.OK);
 	}
 }
