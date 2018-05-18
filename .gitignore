@@ -6,5 +6,5 @@
 *.lock
 *.idx
 *.MF
-/target/
+target/
 .idea/
