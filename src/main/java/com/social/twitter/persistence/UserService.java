@@ -22,19 +22,8 @@ public class UserService {
 		return connector.getSession().createCriteria(User.class).list();
 	}
 
-	public Collection<User> getAllByHql() {
-		String hql = "FROM User";
-		Query query = connector.getSession().createQuery(hql);
-		return query.list();
-	}
-
-	public User findById(String id) {
-		return (User)connector.getSession().get(User.class, id);
-	}
-
 	public User findByLogin(String searchLogin) {
-		String hql = "FROM User s WHERE s.id = " + searchLogin;
-		Query query = connector.getSession().createQuery(hql);
+		Query query = connector.getSession().createQuery("FROM User s WHERE s.login = :searchLogin").setParameter("searchLogin", searchLogin);
 		return (User)query.uniqueResult();
 	}
 

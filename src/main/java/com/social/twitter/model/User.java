@@ -1,5 +1,7 @@
 package com.social.twitter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +17,7 @@ public class User {
 	@Column(name = "login")
 	private String login;
 
-
+	@JsonIgnore
 	@OneToMany(
 		targetEntity = Tweet.class,
 		mappedBy = "tweetUser",

@@ -28,5 +28,4 @@ public class DatabaseConnector {
 	public Session getSession() {
 		return session;
 	}
-
 }
