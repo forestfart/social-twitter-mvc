@@ -33,7 +33,7 @@ public class UserService {
 	}
 
 	public User findByLogin(String searchLogin) {
-		String hql = "FROM User s WHERE s.login = " + searchLogin;
+		String hql = "FROM User s WHERE s.id = " + searchLogin;
 		Query query = connector.getSession().createQuery(hql);
 		return (User)query.uniqueResult();
 	}

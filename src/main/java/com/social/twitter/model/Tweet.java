@@ -1,5 +1,7 @@
 package com.social.twitter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -14,6 +16,7 @@ public class Tweet {
 	@Column(name = "date")
 	private String date;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tweetUser")
 	private User tweetUser;

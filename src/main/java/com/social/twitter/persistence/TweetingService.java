@@ -1,7 +1,6 @@
 package com.social.twitter.persistence;
 
 import com.social.twitter.model.Tweet;
-import com.social.twitter.model.User;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
