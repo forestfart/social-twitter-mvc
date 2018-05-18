@@ -14,6 +14,7 @@
 	
 		<mapping class="com.social.twitter.model.Tweet"/>
 		<mapping class="com.social.twitter.model.User"/>
+		<mapping class="com.social.twitter.model.Follow"/>
 		
 	</session-factory>
 </hibernate-configuration>

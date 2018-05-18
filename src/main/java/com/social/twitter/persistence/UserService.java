@@ -1,8 +1,6 @@
 package com.social.twitter.persistence;
 
 import java.util.Collection;
-import java.util.List;
-
 import com.social.twitter.model.User;
 import org.hibernate.Query;
 import org.hibernate.Transaction;

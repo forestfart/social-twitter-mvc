@@ -24,14 +24,9 @@ public class User {
 		cascade = CascadeType.ALL)
 	private Set<Tweet> tweets;
 
-
-	/*@ManyToMany(cascade = CascadeType.ALL, mappedBy = "subscribtions")
-	public Set<User> users;*/
-
 	public User(String login, Set<Tweet> tweets) {
 		this.login = login;
 		this.tweets = new HashSet<>();
-	//	this.users = new HashSet<>();
 	}
 
 	public User() {

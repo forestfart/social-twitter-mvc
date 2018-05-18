@@ -1,8 +1,9 @@
 package com.social.twitter.controllers;
 
-import com.google.gson.Gson;
+import com.social.twitter.model.Follow;
 import com.social.twitter.model.Tweet;
 import com.social.twitter.model.User;
+import com.social.twitter.persistence.FollowService;
 import com.social.twitter.persistence.TweetingService;
 import com.social.twitter.persistence.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +31,9 @@ public class TwitterRestController {
 
 	@Autowired
 	TweetingService tweetingService;
+
+	@Autowired
+	FollowService followService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllTweets() {
@@ -62,4 +65,22 @@ public class TwitterRestController {
 		return new ResponseEntity<>(tweet, HttpStatus.CREATED);
 	}
 
+	@RequestMapping(value = "/{login}/{followLogin}", method = RequestMethod.GET)
+	public ResponseEntity<?> registerFollow(@PathVariable("login") String login, @PathVariable("followLogin") String followLogin) {
+		System.out.println(login + " --------- " + followLogin);
+		User user = userService.findByLogin(login);
+		User followUser = userService.findByLogin(followLogin);
+		if (user == null || followUser == null) return new ResponseEntity<Object>(String.format("%s or %s does not exist", login, followLogin), HttpStatus.NOT_FOUND);
+		Follow follow = new Follow();
+		follow.setUser(user);
+		follow.setFollowing(followUser);
+		// check if not following already
+		boolean isAlreadyFollowed = followService.getAll().stream().anyMatch(f -> f.getUser().getLogin().equals(login) && f.getFollowing().getLogin().equals(followLogin));
+		if (!isAlreadyFollowed) {
+			followService.create(follow);
+			return new ResponseEntity<>(String.format("User %s is now following %s", login, followLogin), HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<>(String.format("User %s is already followed by %s", followLogin, login), HttpStatus.OK);
+		}
+	}
 }
