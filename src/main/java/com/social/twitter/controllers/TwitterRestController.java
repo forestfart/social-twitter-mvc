@@ -86,7 +86,6 @@ public class TwitterRestController {
 
 	@RequestMapping(value = "/{login}/timeline", method = RequestMethod.GET)
 	public ResponseEntity<?> getUserTimeline(@PathVariable("login") String login) {
-		User user = userService.findByLogin(login);
 		List<User> followedUsers = followService.getAll().stream()
 				.filter(follow -> follow.getUser().getLogin().equals(login))
 				.map(u -> u.getFollowing())

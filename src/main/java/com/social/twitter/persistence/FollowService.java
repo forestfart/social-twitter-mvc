@@ -1,13 +1,10 @@
 package com.social.twitter.persistence;
 
 import com.social.twitter.model.Follow;
-import com.social.twitter.model.User;
-import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.List;
 
 @Component("followService")
 public class FollowService {
@@ -33,9 +30,4 @@ public class FollowService {
         connector.getSession().merge(follow);
         transaction.commit();
     }
-
-/*    public List<User> getFollowedUsers(String searchLogin) {
-            Query query = connector.getSession().createQuery("FROM Follow f WHERE f.user.login = :searchLogin").setParameter("searchLogin", searchLogin);
-        return query.list();
-    }*/
 }

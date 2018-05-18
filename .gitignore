@@ -1,0 +1,10 @@
+*.class
+*.iml
+*.xml
+*.jar
+*.bin
+*.lock
+*.idx
+*.MF
+/target/
+.idea/
