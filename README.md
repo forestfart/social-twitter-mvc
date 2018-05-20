@@ -1,5 +1,5 @@
 # Spring REST twitter
-CRUD application for twitting and following other twitters
+CRUD application for tweaps
 
 [![Build Status](https://travis-ci.org/forestfart/social-twitter-rest.svg?branch=master)](https://travis-ci.org/forestfart/social-twitter-rest)
 [![codecov](https://codecov.io/gh/forestfart/social-twitter-rest/branch/master/graph/badge.svg)](https://codecov.io/gh/forestfart/social-twitter-rest)
@@ -11,10 +11,10 @@ base_url = http://social-twitter-rest.herokuapp.com/twitter
 ## API documentation
 
 ### Create user
-Users are being created when first tweet is created in HTML path (see 'login' in Posting below)
+User is being created when a first tweet is created with use of URL path
 
 ### Posting
-Allowing post a 140 character message.
+To create tweet, simply post body to the URL.
 
 HTTP method: 
 ```bash 
@@ -28,25 +28,51 @@ required JSON body data parameter:
 ```
 
 ### Wall
-User can be see a list of the messages they've posted
+User can receive a list of the messages they've posted
+
 HTTP method: 
 ```bash
 GET base_url/'login'
 ```
+i.e. http://social-twitter-rest.herokuapp.com/twitter/JohnMcLane/
+You will receive all JohnMcLane tweets in JSON format
 
 ### Following
-User can follow another user
+User can follow an another user
+
 HTTP method: 
 ```bash
-GET base_url/'login'/'followLogin"
+GET base_url/'login'/'followLogin'
 ```
+i.e. http://social-twitter-rest.herokuapp.com/twitter/JohnMcLane/LucyAbraham
+If JohnMcLane and LucyAbraham have twitted before, you will receive the following message: 
+"User JohnMcLane is now following LucyAbraham"
 
 ### Timeline
-List of the messages posted by all the users they follow
+Tweets of all the users followed by certain user
+
 HTTP method:
 ```bash
 GET base_url/'login'/timeline
 ```
+i.e. http://social-twitter-rest.herokuapp.com/twitter/JohnMcLane/timeline
+You will receive all tweets of users followed by JohnMcLane in JSON format
 
+#### Database content
+In the database we have the following users for the testing purposes:
+
+CoolMan
+JohnMcLane
+LucyAbraham
+tweetUser22
+tweetUserX
+user
+weiredUser
+weiredUserNab
+
+CoolMan follows user
+user follows CoolMan and tweetUserX
+
+Feel free to play with it!
 
 Copyright (c) 2018 Michal Michalik
