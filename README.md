@@ -35,6 +35,7 @@ HTTP method:
 GET base_url/'login'
 ```
 i.e. http://social-twitter-rest.herokuapp.com/twitter/JohnMcLane/
+
 You will receive all JohnMcLane tweets in JSON format
 
 ### Following
@@ -45,6 +46,7 @@ HTTP method:
 GET base_url/'login'/'followLogin'
 ```
 i.e. http://social-twitter-rest.herokuapp.com/twitter/JohnMcLane/LucyAbraham
+
 If JohnMcLane and LucyAbraham have twitted before, you will receive the following message: 
 "User JohnMcLane is now following LucyAbraham"
 
@@ -56,23 +58,26 @@ HTTP method:
 GET base_url/'login'/timeline
 ```
 i.e. http://social-twitter-rest.herokuapp.com/twitter/JohnMcLane/timeline
+
 You will receive all tweets of users followed by JohnMcLane in JSON format
 
-#### Database content
+### Database content
 In the database we have the following users for the testing purposes:
 
-CoolMan
-JohnMcLane
-LucyAbraham
-tweetUser22
-tweetUserX
-user
-weiredUser
-weiredUserNab
+- CoolMan
+- JohnMcLane
+- LucyAbraham
+- tweetUser22
+- tweetUserX
+- user
+- weiredUser
+- weiredUserNab
 
-CoolMan follows user
-user follows CoolMan and tweetUserX
+Rules sacved in the database:
+- CoolMan follows user
+- user follows CoolMan and tweetUserX
 
-Feel free to play with it!
+
+#### Feel free to play with it!
 
 Copyright (c) 2018 Michal Michalik
