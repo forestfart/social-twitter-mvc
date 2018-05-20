@@ -20,10 +20,12 @@ HTTP method:
 ```bash 
 POST base_url/'login'
 ```
+i.e. http://social-twitter-rest.herokuapp.com/twitter/LucyAbraham
+
 required JSON body data parameter: 
 ```bash 
 {
-    "content": "Sample content"
+    "content": "Lucy's very first tweet content"
 }
 ```
 
