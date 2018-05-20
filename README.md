@@ -20,12 +20,15 @@ HTTP method:
 ```bash 
 POST base_url/'login'
 ```
+i.e. http://social-twitter-rest.herokuapp.com/twitter/LucyAbraham
+
 required JSON body data parameter: 
 ```bash 
 {
-    "content": "Sample content"
+    "content": "Lucy's very first tweet content"
 }
 ```
+You will receive back the registered Lucy's tweet with it's id, timestamp and content in JSON format.
 
 ### Wall
 User can receive a list of the messages they've posted
@@ -71,9 +74,10 @@ In the database we have the following users for the testing purposes:
 - weiredUser
 - weiredUserNab
 
-Rules sacved in the database:
+Rules saved in the database:
 - CoolMan follows user
 - user follows CoolMan and tweetUserX
+
 
 
 #### Feel free to play with it!
