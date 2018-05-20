@@ -65,8 +65,6 @@ You will receive all tweets of users followed by JohnMcLane in JSON format
 In the database we have the following users for the testing purposes:
 
 - CoolMan
-- JohnMcLane
-- LucyAbraham
 - tweetUser22
 - tweetUserX
 - user
