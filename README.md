@@ -73,9 +73,10 @@ In the database we have the following users for the testing purposes:
 - weiredUser
 - weiredUserNab
 
-Rules sacved in the database:
+Rules saved in the database:
 - CoolMan follows user
 - user follows CoolMan and tweetUserX
+
 
 
 #### Feel free to play with it!
