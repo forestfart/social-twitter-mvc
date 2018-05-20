@@ -28,6 +28,7 @@ required JSON body data parameter:
     "content": "Lucy's very first tweet content"
 }
 ```
+You will receive back the registered Lucy's tweet with it's id, timestamp and content in JSON format.
 
 ### Wall
 User can receive a list of the messages they've posted
